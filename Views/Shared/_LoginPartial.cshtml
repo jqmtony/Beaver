@@ -1,0 +1,22 @@
+@using Microsoft.AspNetCore.Identity
+@using Beaver.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a class="mdl-navigation__link" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+            <li>
+                <button type="submit" class="mdl-navigation__link">Log off</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <a class="mdl-button mdl-button--accent mdl-button--raised" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+    <a class="mdl-navigation__link" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
+}
